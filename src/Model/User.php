@@ -33,7 +33,7 @@ final class User extends Model
     $sql = "SELECT api_$apiType FROM user WHERE username = '$user'";
 
     $this->connection->query($sql);
-    return $this->connection->execute()->fetch(\PDO::FETCH_ASSOC);
+    return reset($this->connection->execute()->fetch(\PDO::FETCH_ASSOC));
   }
 
   public function getUserInfo($user, $info)
@@ -41,7 +41,7 @@ final class User extends Model
     $sql = "SELECT $info FROM user WHERE username = '$user'";
     
     $this->connection->query($sql);
-    return $this->connection->execute()->fetch(\PDO::FETCH_ASSOC);
+    return reset($this->connection->execute()->fetch(\PDO::FETCH_ASSOC));
   }
 
 }

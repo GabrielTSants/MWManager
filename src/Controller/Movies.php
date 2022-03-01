@@ -19,7 +19,7 @@ class Movies implements InterfaceRequisition
       $this->user = new User;
       $this->movies = new Category;
       $apiKey = $this->user->getAPI($_SESSION['username'], 'omdb');
-      if (!empty($apiKey)) $this->omdb = new OMDB(reset($apiKey));
+      if (!empty($apiKey)) $this->omdb = new OMDB($apiKey);
     }
 
     public function process()

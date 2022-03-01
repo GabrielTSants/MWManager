@@ -31,6 +31,7 @@ class Login implements InterfaceRequisition
     
     if ($userExist){
       $_SESSION['username'] = $login;
+      $_SESSION['userId'] = $this->user->getUserInfo($login, 'id');
       header('location: /');
       return;
     }

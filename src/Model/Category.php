@@ -11,7 +11,16 @@ class Category extends Model
     parent::__construct();
   }
 
-  public function getCategory($user)
+  public function getNewCategory($userId)
+  {
+    $sql = "SELECT c.id, c.name FROM category c
+    WHERE c.id not in (select uc.fk_category from user_category uc where uc.fk_user = $userId);";
+
+    $this->connection->query($sql);
+    return $this->connection->execute()->fetchAll(\PDO::FETCH_OBJ);
+  }
+
+  public function getUserCategory($user)
   {
     $sql = "SELECT c.id, c.name FROM category c 
     INNER JOIN user_category uc ON uc.fk_category = c.id

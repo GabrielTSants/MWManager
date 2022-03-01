@@ -18,7 +18,7 @@ class Settings implements InterfaceRequisition
   public function process()
   {
     $title = 'Settings';
-    $pp = reset($this->user->getUserInfo($_SESSION['username'], 'picture'));
+    $pp = $this->user->getUserInfo($_SESSION['username'], 'picture');
     $this->render('user/settings.php', compact('title', 'pp'));
   }
 }

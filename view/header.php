@@ -38,9 +38,7 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <?php if (!$_SERVER['PATH_INFO'] == '/settings') : ?>
-        <a href="/settings" class="mr-2"><?=$_SESSION['username']?></a>
-      <?php endif ?>
+      <a href="/settings" class="mr-2"><?=$_SESSION['username']?></a>
       <a class="btn btn-secondary btn-sm" href="/logout">Logout</a>
     </form>
   </div>
