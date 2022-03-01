@@ -7,10 +7,12 @@ use src\Model\Model;
 final class User extends Model
 {
   protected $table = 'user';
+  private $userId;
 
   public function __construct()
   {
     parent::__construct();
+    $this->userId = $_SESSION['userId'];
   }
 
   public function getUserByName($user)
@@ -23,14 +25,14 @@ final class User extends Model
 
   public function checkLogin($user, $password)
   {
-    $sql = "SELECT * from user WHERE username = '$user' AND password = '$password';";
+    $sql = "SELECT * from $this->table WHERE username = '$user' AND password = '$password';";
     $this->connection->query($sql);
     return $this->connection->execute()->fetch(\PDO::FETCH_OBJ);
   }
 
-  public function getAPI($user, $apiType)
+  public function getAPI($apiType)
   {
-    $sql = "SELECT api_$apiType FROM user WHERE username = '$user'";
+    $sql = "SELECT api_$apiType FROM $this->table WHERE id = $this->userId";
 
     $this->connection->query($sql);
     return reset($this->connection->execute()->fetch(\PDO::FETCH_ASSOC));

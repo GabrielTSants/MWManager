@@ -16,6 +16,7 @@ class Login implements InterfaceRequisition
   {
     $this->user = new User;
   }
+  
   public function process()
   {
     $title = 'Login';

@@ -7,12 +7,14 @@ use src\Model\Model;
 class OMDB extends Model
 {
   private $key;
+  private $userId;
   private $url = 'http://www.omdbapi.com';
 
   public function __construct($key)
   {
-    $this->key = $key;
     parent::__construct();
+    $this->userId = $_SESSION['userId'];
+    $this->key = $key;
   }
 
   public function getInfo($title)

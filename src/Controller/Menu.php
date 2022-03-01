@@ -12,7 +12,7 @@ class Menu implements InterfaceRequisition
   {
     $title = 'MWManager';
     $categories = new Category;
-    $listCategories = $categories->getUserCategory($_SESSION['username']);
+    $listCategories = $categories->getUserCategory();
     $this->render('menu/index.php', compact('title', 'listCategories'));
   }
 }
