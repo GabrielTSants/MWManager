@@ -1,7 +1,11 @@
 <?php require_once __DIR__.'/../header.php'; ?>
 
-<form method="POST" action="/new-item.php">
+<form method="POST" action="/new-item">
   <div class="container">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" class="form-control">
+    </div>
     <div class="form-group">
       <label for="category">Category</label>
       <select class="form-control" name="categoryList" id="categoryList">
@@ -14,6 +18,7 @@
     <div class="form-group">
       <label for="genre">Genre</label>
       <select class="form-control" name="genreList" id="genreList"></select>
+      <button class="btn btn-success  float-right mt-2" name="save">Save</button>
     </div>
   </div>
 </form>

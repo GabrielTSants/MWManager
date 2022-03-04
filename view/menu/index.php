@@ -3,6 +3,8 @@
     <div class="sidebar"> 
         <ul>
             <li><a href="#"><i class="fas fa-home"></i>Dashboard</a></li>
+            <li><a href="/new-item"><i class="far fa-credit-card"></i>New item</a></li>
+            <li><a href="/new-item" data-target="#theModal" data-toggle="modal">Lab 6</a></li>
             <li><a href="/new-category"><i class="far fa-credit-card"></i>New category</a></li>
         <?php if(!empty($listCategories)) : ?>
         </ul> <small class="text-muted px-3">CATEGORIES</small>

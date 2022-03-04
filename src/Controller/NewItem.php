@@ -5,7 +5,7 @@ namespace MWManager\Controller;
 use MWManager\Helpers\View;
 use MWManager\Model\Category;
 
-class NewCategory implements InterfaceRequisition
+class NewItem implements InterfaceRequisition
 {
   use View;
   private $category;
@@ -17,8 +17,13 @@ class NewCategory implements InterfaceRequisition
 
   public function process()
   {
-    $title = 'New Category';
+    if (isset($_POST['save']) && !empty($_POST['name']) && !empty($_POST['categoryList']) && !empty($_POST['genreList'])){ 
+
+      return;
+    }
+
+    $title = 'New item';
     $categories = $this->category->getNewCategory();
-    return $this->render('menu/new-category.php', compact('title', 'categories'));
+    $this->render('menu/new-item.php', compact('title', 'categories'));
   }
 }
