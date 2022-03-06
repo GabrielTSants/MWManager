@@ -18,8 +18,9 @@ class Dropdown implements InterfaceRequisition
 
         foreach($dropdownObject->getCategoryGenres($data) as $row){
           $options[] = $row->name;
+          $id[] = $row->id;
         }
-        print json_encode(array('options' => $options));
+        print json_encode(array('options' => $options, 'id' => $id));
         break;
     }
   }

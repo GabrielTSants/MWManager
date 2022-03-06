@@ -6,7 +6,7 @@ class Connection
 {
   private $db = 'sqlite';
   private $database = __DIR__.'/../../config/db.sqlite';
-  private $con;
+  public $con;
 
   public function __construct()
   {

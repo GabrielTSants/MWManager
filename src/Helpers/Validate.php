@@ -11,4 +11,16 @@ trait Validate
     }
     return true;
   }
+
+  public function checkString(array $data, string $value): bool
+  {
+    foreach ($data as $string){
+      if (!str_contains($value, $string)){
+        continue;
+      } else {
+        return true;
+      }
+      return false;
+    }
+  }
 }
