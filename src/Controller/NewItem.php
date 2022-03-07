@@ -19,11 +19,8 @@ class NewItem implements InterfaceRequisition
   public function process()
   {
     if (isset($_POST['save']) && !empty($_POST['name']) && !empty($_POST['categoryList']) && !empty($_POST['genreList'])){ 
-      var_dump($_POST);
-      exit();
       $item = new Item($_POST['categoryList']);
       $item->save(['name' => $_POST['name'], 'genre' => $_POST['genreList']]);
-
     }
 
     $title = 'New item';

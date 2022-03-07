@@ -30,14 +30,4 @@ class Category extends Model
     $this->connection->query($sql);
     return $this->connection->execute()->fetchAll(\PDO::FETCH_OBJ);
   }
-
-  public function getCategoryItems($user, $table)
-  {
-    $sql = "SELECT c.id, c.name, c.completed, c.cover FROM $table c
-    INNER JOIN user u ON u.id = c.fk_user WHERE u.id = $this->userId;";
-    $sql = $this->search(['id', 'name', 'completed', 'cover'], '');
-
-    $this->connection->query($sql);
-    return $this->connection->execute()->fetchAll(\PDO::FETCH_OBJ);
-  }
 }

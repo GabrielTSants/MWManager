@@ -5,6 +5,7 @@ namespace MWManager\Controller;
 use MWManager\APIS\OMDB;
 use MWManager\Helpers\View;
 use MWManager\Model\Category;
+use MWManager\Model\Item;
 use MWManager\Model\User;
 
 class Movies implements InterfaceRequisition
@@ -17,14 +18,14 @@ class Movies implements InterfaceRequisition
     public function __construct()
     {
       $this->user = new User;
-      $this->movies = new Category;
+      $this->movies = new Item('movies');
       $apiKey = $this->user->getAPI('omdb');
       if (!empty($apiKey)) $this->omdb = new OMDB($apiKey);
     }
 
     public function process()
     {
-      $listMovies = $this->movies->getCategoryItems($_SESSION['username'], 'movies');
+      $listMovies = $this->movies->getCategoryItems('movies');
       $this->render('/menu/movies.php', compact('title', 'listMovies'));
     }
 }

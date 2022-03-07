@@ -29,7 +29,7 @@ class Model
       $this->fetchType = $fetchType;
   }
 
-  public function save($data)
+  public function save($data, $options = [])
   {
       $data = array_filter($data, fn($value) => !is_null($value));
 
