@@ -95,10 +95,6 @@ class Model
 
     $sql = "SELECT $columnClause FROM $this->table".(!empty($joinClause) ? $joinClause : ' ')." $whereClause".((!empty($conditionClause) ? $conditionClause : '')).";";
     echo $sql;
-    if ($this->connection->con->errorCode()) {
-      throw new \Exception($this->connection->con->errorInfo()[2]);
-      return;
-    }
     return $sql;
   }
 

@@ -27,7 +27,7 @@ class NewItem implements InterfaceRequisition
     }
 
     $title = 'New item';
-    $categories = $this->category->getNewCategory();
+    $categories = $this->category->getUserCategory();
     $this->render('menu/new-item.php', compact('title', 'categories'));
   }
 }

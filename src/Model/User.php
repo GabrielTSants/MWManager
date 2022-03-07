@@ -32,18 +32,20 @@ final class User extends Model
 
   public function getAPI($apiType)
   {
-    $sql = "SELECT api_$apiType FROM $this->table WHERE id = $this->userId";
+    $sql = $this->search(["api_$apiType"], ['id' => $this->userId]);
 
     $this->connection->query($sql);
-    return reset($this->connection->execute()->fetch(\PDO::FETCH_ASSOC));
+    $api = $this->connection->execute()->fetch();
+    return $api["api_$apiType"];
   }
 
   public function getUserInfo($user, $info)
   {
-    $sql = "SELECT $info FROM user WHERE username = '$user'";
+    $sql = "SELECT $info FROM $this->table WHERE username = '$user'";
     
     $this->connection->query($sql);
-    return reset($this->connection->execute()->fetch(\PDO::FETCH_ASSOC));
+    $user = $this->connection->execute()->fetch();
+    return $user[$info];
   }
 
 }

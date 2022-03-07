@@ -19,6 +19,7 @@ class Settings implements InterfaceRequisition
   {
     $title = 'Settings';
     $pp = $this->user->getUserInfo($_SESSION['username'], 'picture');
-    $this->render('user/settings.php', compact('title', 'pp'));
+    $api_omdb = $this->user->getAPI('omdb');
+    $this->render('user/settings.php', compact('title', 'pp', 'api_omdb'));
   }
 }

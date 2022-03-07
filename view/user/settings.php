@@ -49,12 +49,12 @@
 		</div>
 		<div class="row gutters">
 			<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-				<h6 class="mt-3 mb-2 text-primary">Address</h6>
+				<h6 class="mt-3 mb-2 text-primary">APIs</h6>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
-					<label for="Street">Street</label>
-					<input type="name" class="form-control" id="Street" placeholder="Enter Street">
+					<label for="api_omdb">OMDB</label>
+					<input type="name" class="form-control" id="api_omdb" value="<?=$api_omdb?>">
 				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
