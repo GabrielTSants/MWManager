@@ -16,8 +16,6 @@ class Item extends Model
 
   public function getCategoryItems()
   {
-    $sql = "SELECT c.id, c.name, c.completed, c.cover FROM $this->table c
-    INNER JOIN user u ON u.id = c.fk_user WHERE u.id = $this->userId;";
     $sql = $this->search(['id', 'name', 'completed', 'cover'], ['id' => $_SESSION['userId']]);
 
     $this->connection->query($sql);

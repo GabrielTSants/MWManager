@@ -4,7 +4,6 @@ namespace MWManager\Controller;
 
 use MWManager\APIS\OMDB;
 use MWManager\Helpers\View;
-use MWManager\Model\Category;
 use MWManager\Model\Item;
 use MWManager\Model\User;
 
@@ -20,7 +19,6 @@ class Movies implements InterfaceRequisition
       $this->user = new User;
       $this->movies = new Item('movies');
       $apiKey = $this->user->getAPI('omdb');
-      if (!empty($apiKey)) $this->omdb = new OMDB($apiKey);
     }
 
     public function process()

@@ -20,7 +20,9 @@ class NewItem implements InterfaceRequisition
   {
     if (isset($_POST['save']) && !empty($_POST['name']) && !empty($_POST['categoryList']) && !empty($_POST['genreList'])){ 
       $item = new Item($_POST['categoryList']);
-      $item->save(['name' => $_POST['name'], 'genre' => $_POST['genreList']]);
+      $item->save(['name' => $_POST['name'], 'fk_genre' => $_POST['genreList']]);
+      header('Location: /'.strtolower($_POST['categoryList']));
+      return;
     }
 
     $title = 'New item';

@@ -53,10 +53,10 @@ $(document).ready(function () {
 
               // remove items from previous searches from the result list
               $('#genreList').empty();
-
               // append each teachername to the list and wrap in <li>
               $.each(response.options, function (i, val) {
-                  list.append($("<option>" + val + "</option>"));
+                console.log(i)
+                  list.append("<option value='"+response.id[i]+"'>"+response.options[i]+"</option>");
               });
             }
         }});
