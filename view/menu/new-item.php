@@ -55,7 +55,6 @@ $(document).ready(function () {
               $('#genreList').empty();
               // append each teachername to the list and wrap in <li>
               $.each(response.options, function (i, val) {
-                console.log(i)
                   list.append("<option value='"+response.id[i]+"'>"+response.options[i]+"</option>");
               });
             }
