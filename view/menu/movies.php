@@ -25,7 +25,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h5 class="card-title block" id="<?=$movie->name?>"><?=$movie->name?><a onclick="downloadInfo(<?=$movie->name?>)" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
+            <h5 class="card-title block" id="<?=$movie->name?>"><?=$movie->name?><a onclick="downloadInfo('<?=$movie->name?>')" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
             <hr>
             <p class="card-text"><?= !empty($movie->description) ? $movie->description : 'No description' ?></p>
             <p class="card-text"><?= $movie->completed == 0 ? 'To watch' : 'Watch' ?></p>
@@ -42,11 +42,7 @@
 <script>
   function downloadInfo(itemName) {
     let formData = new FormData();
-    const name = document
-        .querySelector(`#${itemName}`).value
-        .value;
     alert(itemName);
-    break;
     formData.append('name', name);
     formData.append('api', 'movies');
     const url = `/downInfo`;
