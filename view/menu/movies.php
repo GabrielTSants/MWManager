@@ -25,7 +25,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h5 class="card-title block" id="<?=$movie->name?>"><?=$movie->name?><a onclick="downloadInfo('<?=$movie->name?>')" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
+            <h5 class="card-title block" id="<?=$movie->name?>"><?=$movie->name?><a onclick="downloadInfo('<?=$movie->id?>')" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
             <hr>
             <p class="card-text"><?= !empty($movie->description) ? $movie->description : 'No description' ?></p>
             <p class="card-text"><?= $movie->completed == 0 ? 'To watch' : 'Watch' ?></p>
@@ -40,12 +40,12 @@
 <?php require_once __DIR__.'/../footer.php'; ?>
 
 <script>
-  function downloadInfo(itemName) {
+  function downloadInfo(itemId) {
     let formData = new FormData();
-    alert(itemName);
-    formData.append('name', name);
-    formData.append('api', 'movies');
-    const url = `/downInfo`;
+    alert(itemId);
+    formData.append('id', itemId);
+    formData.append('target', '<?=str_replace('/', '', $_SERVER['PATH_INFO'])?>');
+    const url = `/downloadInfo`;
     fetch(url, {
         method: 'POST',
         body: formData

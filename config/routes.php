@@ -1,6 +1,7 @@
 <?php
 
 use MWManager\Controller\{Login, Logout, Menu, Movies, NewCategory, NewItem, Settings};
+use MWManager\Helpers\Download;
 use MWManager\Helpers\Dropdown;
 
 return [
@@ -11,5 +12,6 @@ return [
         '/settings' => Settings::class,
         '/new-item' => NewItem::class,
         '/new-category' => NewCategory::class,
-        '/getGenres' => Dropdown::class
+        '/getGenres' => Dropdown::class,
+        '/downloadInfo' => Download::class
 ];
