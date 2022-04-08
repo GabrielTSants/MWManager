@@ -1,12 +1,8 @@
 <?php require_once __DIR__.'/../header.php'; ?>
 <section class="jumbotron text-center">
     <div class="container">
-      <h1>Bem vindo ao Quiz, <?=$_SESSION['usuario'];?></h1>
-      <p class="lead text-muted">Selecione um quiz para iniciar .</p>
-      <p>
-        <a href="<?= $data['routeScore']?>" class="btn btn-primary my-2">Resultados Anteriores</a>
-        <a href="<?= $data['routeRanking']?>" class="btn btn-secondary my-2">Ranking Geral</a>
-      </p>
+      <h1>Welcome to MWManager, <?=$_SESSION['username'];?></h1>
+      <p class="lead text-muted">.</p>
     </div>
 </section><br>
 
@@ -15,10 +11,10 @@
       <?php foreach($listMovies as $movie): ?>
         <div class="card hvr-reveal col-md-4 col-sm-5 col-lg-3 mb-2 ml-2">
           <div class="view overlay">
-          <?php if (empty($movie->cover)): ?>
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225"><rect width="100%" height="100%" fill="#79999c"></rect></svg>
+          <?php if (empty($movie->name)): ?>
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="10%"><rect  fill="#79999c"></rect></svg>
             <?php else: ?>
-              <img class="card-img-top mt-2" src="<?="/public/assets/img/{$quiz['img']}" ?>" width="100%" height="100%" alt="Card image cap"/>
+              <img class="card-img-top mt-2" src="<?="/img/items/movies/$movie->id.jpg" ?>"  alt="Card image cap"/>
             <?php endif;?>
             <a>
               <div class="mask rgba-white-slight"></div>
@@ -42,8 +38,7 @@
 <script>
   function downloadInfo(itemId) {
     let formData = new FormData();
-    alert(itemId);
-    formData.append('id', itemId);
+    formData.append('itemId', itemId);
     formData.append('target', '<?=str_replace('/', '', $_SERVER['PATH_INFO'])?>');
     const url = `/downloadInfo`;
     fetch(url, {

@@ -7,7 +7,7 @@
 		<div class="account-settings">
 			<div class="user-profile">
 				<div class="user-avatar">
-					<img src="/img/pp/<?=$pp?>"  width="220" height="300">
+					<img src="/img/pp/<?=$pp?>"  width="100%" height="100%">
 				</div>
 				<h5 class="user-name mt-2"><?=$_SESSION['username']?></h5>
 			</div>

@@ -10,23 +10,44 @@ use MWManager\Model\Item;
 class Download implements InterfaceRequisition
 {
   private $user;
+  private $category;
   private $item;
   
   public function __construct()
   {
     $this->user = new User();
-    $this->item = new Item($_POST['target']);
+    $this->category = new Item($_POST['target']);
+    $this->itemId = $_POST['itemId'];
   }
 
   public function process()
   {
-    file_put_contents('/tmp/text.txt', 'id:: '.$_POST['id']);
     switch($_POST['target']){
       case 'movies':
         $api = new OMDB($this->user->getAPI('omdb'));
-        file_put_contents('/tmp/text.txt', serialize($this->item->getItem($_POST['id'])));
-        //$this->item->save();
+        $itemName = reset($this->category->getItem($this->itemId))->name;
+        //file_put_contents('/tmp/test.txt', print_r($itemName, true));
+        $getData = $api->getInfo($itemName);
+        $image = $getData['Poster'];
+        $this->grabImage($image, __DIR__."/../../public/img/items/movies/$this->itemId.jpg");
         break;
     }
+  }
+
+  private function grabImage($url,$saveto)
+  {
+    $ch = curl_init ($url);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $raw=curl_exec($ch);
+    curl_close ($ch);
+    if(file_exists($saveto)){
+        unlink($saveto);
+    }
+    $fp = fopen($saveto,'x');
+    fwrite($fp, $raw);
+    fclose($fp);
   }
 }

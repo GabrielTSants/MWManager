@@ -94,7 +94,6 @@ class Model
     }
 
     $sql = "SELECT $columnClause FROM $this->table".(!empty($joinClause) ? $joinClause : ' ')." $whereClause".((!empty($conditionClause) ? $conditionClause : '')).";";
-    echo $sql;
     return $sql;
   }
 
