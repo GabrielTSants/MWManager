@@ -16,7 +16,7 @@ class Item extends Model
 
   public function getCategoryItems()
   {
-    $sql = $this->search(['id', 'name', 'completed', 'cover'], ['fk_user' => $_SESSION['userId']]);
+    $sql = $this->search(['id', 'name', 'completed', 'cover', 'created_at'], ['fk_user' => $_SESSION['userId']]);
     $this->connection->query($sql);
     return $this->connection->execute()->fetchAll(\PDO::FETCH_OBJ);
   }

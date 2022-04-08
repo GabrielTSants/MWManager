@@ -24,10 +24,10 @@
             <h5 class="card-title block" id="<?=$movie->name?>"><?=$movie->name?><a onclick="downloadInfo('<?=$movie->id?>')" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
             <hr>
             <p class="card-text"><?= !empty($movie->description) ? $movie->description : 'No description' ?></p>
-            <p class="card-text"><?= $movie->completed == 0 ? 'To watch' : 'Watch' ?></p>
+            <p class="card-text">Started at: <?= explode(' ', $movie->created_at)[0] ?></p>
           </div>
           <div class="row justify-content-end ">
-              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="#">Iniciar</a>
+              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="#"><?= $movie->completed == 0 ? 'Watched' : 'To watch' ?></a>
           </div>
         </div>
       <?php endforeach ?>        
