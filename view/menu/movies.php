@@ -27,7 +27,7 @@
             <p class="card-text"><?= $movie->completed == 0 ? 'To watch' : 'Watch' ?></p>
           </div>
           <div class="row justify-content-end ">
-              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="<?= "$data[routeQuiz]/$quiz[id]" ?>">Iniciar</a>
+              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="#">Iniciar</a>
           </div>
         </div>
       <?php endforeach ?>        

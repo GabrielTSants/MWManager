@@ -1,11 +1,11 @@
 <?php require_once __DIR__.'/../header.php'; ?>
 <section class="jumbotron text-center">
     <div class="container">
-      <h1>Welcome to MWManager, <?=$_SESSION['usuario'];?></h1>
+      <h1>Welcome to MWManager, <?=$_SESSION['username'];?></h1>
       <p class="lead text-muted"></p>
       <p>
-        <a href="<?= $data['routeScore']?>" class="btn btn-primary my-2">Resultados Anteriores</a>
-        <a href="<?= $data['routeRanking']?>" class="btn btn-secondary my-2">Ranking Geral</a>
+        <a href="#" class="btn btn-primary my-2"></a>
+        <a href="#" class="btn btn-secondary my-2"></a>
       </p>
     </div>
 </section><br>

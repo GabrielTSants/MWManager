@@ -7,7 +7,7 @@
       <label for="password" class="mt-2"><h3>Password</h3></label>
       <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
     </div>
-    <button class="btn btn-primary">Salvar</button>
+    <button class="btn btn-primary">Login</button>
   </form>
 </div>
 <?php require_once __DIR__.'/../footer.php'; ?>
