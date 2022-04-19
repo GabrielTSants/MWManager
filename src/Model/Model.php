@@ -71,7 +71,6 @@ class Model
 
     if (is_array($options)){
       foreach ($options as $key => $value){
-        $whereName = ';';
         $whereConditions[] = ' '.$this->checkownTable($key).' = '.(!$this->checkString(['id', 'fk'], $key) ? "\"$value\"" : $value).'';
       }
       $whereClause = "WHERE ".implode(' AND ', $whereConditions);
