@@ -51,12 +51,8 @@ class Model
 
   public function search($columns, $options = [], $conditions = [])
   {
-    $whereClause = '';
+    $whereClause = $conditionClause = $joinClause = $columnClause = $columnName = '';
     $whereConditions = [];
-    $conditionClause = '';
-    $joinClause = '';
-    $columnClause = '';
-    $columnName = '';
 
     if (is_array($columns)){
       foreach($columns as $column){
