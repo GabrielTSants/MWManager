@@ -26,9 +26,9 @@ class Download implements InterfaceRequisition
       case 'movies':
         $api = new OMDB($this->user->getAPI('omdb'));
         $itemName = reset($this->category->getItem($this->itemId))->name;
-        //file_put_contents('/tmp/test.txt', print_r($itemName, true));
         $getData = $api->getInfo($itemName);
         $image = $getData['Poster'];
+        //file_put_contents('/tmp/teste.txt', print_r($getData, true)); // API Data received
         $this->grabImage($image, __DIR__."/../../public/img/items/movies/$this->itemId.jpg");
         break;
     }

@@ -27,4 +27,9 @@ class Item extends Model
     $this->connection->query($sql);
     return $this->connection->execute()->fetchAll(\PDO::FETCH_OBJ);
   }
+
+  public function completeItem()
+  {
+    $sqk = $this->search(['']);
+  }
 }

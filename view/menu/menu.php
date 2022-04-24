@@ -18,7 +18,7 @@
           <?php if (empty($item->cover)): ?>
               <svg class="bd-placeholder-img card-img-top" width="100%" height="225"><rect width="100%" height="100%" fill="#79999c"></rect></svg>
             <?php else: ?>
-              <img class="card-img-top mt-2" src="<?="/public/assets/img/{$quiz['img']}" ?>" width="100%" height="100%" alt="Card image cap"/>
+              <img class="card-img-top mt-2" src="<?="/public/assets/img/{$v['img']}" ?>" width="100%" height="100%" alt="Card image cap"/>
             <?php endif;?>
             <a>
               <div class="mask rgba-white-slight"></div>
@@ -31,7 +31,7 @@
             <p class="card-text"><?= $item->completed == 0 ? 'To watch' : 'Watch' ?></p>
           </div>
           <div class="row justify-content-end ">
-              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="<?= "$data[routeQuiz]/$quiz[id]" ?>">Iniciar</a>
+              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="<?= "$data[route]/$v[id]" ?>">Iniciar</a>
           </div>
         </div>
       <?php endforeach ?>        

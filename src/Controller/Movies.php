@@ -2,7 +2,6 @@
 
 namespace MWManager\Controller;
 
-use MWManager\APIS\OMDB;
 use MWManager\Helpers\View;
 use MWManager\Model\Item;
 use MWManager\Model\User;
@@ -23,6 +22,7 @@ class Movies implements InterfaceRequisition
 
     public function process()
     {
+      $title = 'Movies';
       $listMovies = $this->movies->getCategoryItems('movies');
       $this->render('/menu/movies.php', compact('title', 'listMovies'));
     }

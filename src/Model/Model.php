@@ -49,6 +49,26 @@ class Model
       return false;
   }
 
+  public function update($data, $options = [])
+  {
+      $data = array_filter($data, fn($value) => !is_null($value));
+
+      $fields = implode(',', array_keys($data));
+      $values = implode(',', array_values($data)); 
+      $valuesSth = implode(',', array_fill(0, count($data), '?'));
+
+      $this->connection->query("UPDATE $this->table ($fields) VALUES ($valuesSth);");
+      $data = array_filter($data, fn($value) => !is_null($value));
+
+      $save =  $this->connection->execute(array_values($data));
+
+      if ($save) {
+          return  $this->connection->con->lastInsertId();
+      }
+
+      return false;
+  }
+
   public function search($columns, $options = [], $conditions = [])
   {
     $whereClause = $conditionClause = $joinClause = $columnClause = $columnName = '';
@@ -59,15 +79,13 @@ class Model
         $columnName = $this->checkownTable($column);
         $columnClause .= ($column != end($columns) ? "$columnName, " : $columnName);
       }
-    } else if (is_string($columns)){
-      if ($columns === 'all' || empty($columns)){
+    } else {
         $columnName = '*';
-      }
     }
 
     if (is_array($options)){
       foreach ($options as $key => $value){
-        $whereConditions[] = ' '.$this->checkownTable($key).' = '.(!$this->checkString(['id', 'fk'], $key) ? "\"$value\"" : $value).'';
+        $whereConditions[] = ' '.$this->checkownTable($key).' = '.(!$this->checkString(['id', 'fk'], $key) ? "\"$value\"" : "\"$value\"" ).''; // Ternary else for fk/id with strings too (SQlite Fault!)
       }
       $whereClause = "WHERE ".implode(' AND ', $whereConditions);
     } else if (is_string($options)){

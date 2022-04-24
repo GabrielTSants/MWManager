@@ -12,7 +12,7 @@
         <div class="card hvr-reveal col-md-4 col-sm-5 col-lg-3 mb-2 ml-2">
           <div class="view overlay">
           <?php if (empty($movie->name)): ?>
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="10%"><rect  fill="#79999c"></rect></svg>
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="40%"><rect  fill="#79999c"></rect></svg>
             <?php else: ?>
               <img class="card-img-top mt-2" src="<?="/img/items/movies/$movie->id.jpg" ?>"  alt="Card image cap"/>
             <?php endif;?>
