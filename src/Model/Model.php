@@ -31,13 +31,20 @@ class Model
 
   public function save($data, $options = [])
   {
+      $where = '';
       $data = array_filter($data, fn($value) => !is_null($value));
-
       $fields = implode(',', array_keys($data));
-      $values = implode(',', array_values($data)); 
       $valuesSth = implode(',', array_fill(0, count($data), '?'));
 
-      $this->connection->query("INSERT INTO $this->table ($fields) VALUES ($valuesSth);");
+      if (!empty($options)){
+        if (is_array($options)){
+          $where = "WHERE " . http_build_query($options, '', ', ');
+        } else if (array() === $options){
+          $where = "WHERE $options";
+        }
+      }
+
+      $this->connection->query("INSERT INTO $this->table ($fields) VALUES ($valuesSth) $where;");
       $data = array_filter($data, fn($value) => !is_null($value));
 
       $save =  $this->connection->execute(array_values($data));

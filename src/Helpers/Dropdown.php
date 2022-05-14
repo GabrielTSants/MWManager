@@ -16,7 +16,7 @@ class Dropdown implements InterfaceRequisition
       case '/getGenres':
         $dropdownObject = new Genres;
 
-        foreach($dropdownObject->getCategoryGenres($data) as $row){
+        foreach($dropdownObject->getUserGenres($data) as $row){
           $options[] = $row->name;
           $id[] = $row->id;
         }

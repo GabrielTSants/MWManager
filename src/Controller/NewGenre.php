@@ -21,12 +21,9 @@ class NewGenre implements InterfaceRequisition
     if (isset($_POST['save']) && !empty($_POST['genre']) && !empty($_POST['categoryList'])){
       $genre = new Genres();
       $categoryList = $_POST['categoryList'];
-      
       $genreName = rtrim($_POST['genre']);
 
-      foreach ($categoryList as $category){
-        $genre->save(['name' => $genreName, 'fk_category' => $category]);
-      }
+      $genre->saveUserGenre($genreName, $categoryList);
 
       header('Location: /menu');
       return;

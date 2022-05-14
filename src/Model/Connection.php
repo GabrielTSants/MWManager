@@ -2,6 +2,8 @@
 
 namespace MWManager\Model;
 
+use PDOException;
+
 class Connection
 {
   private $db = 'sqlite';
@@ -21,7 +23,11 @@ class Connection
 
   public function query($query)
   {
-    return $this->stmt = $this->con->prepare($query);
+    try {
+      $this->stmt = $this->con->prepare($query);
+    } catch (PDOException $e){
+      echo "SQL ERROR: " . $query;
+    } 
   }
 
   public function execute($data = null)
