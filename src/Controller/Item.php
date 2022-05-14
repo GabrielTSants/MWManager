@@ -3,27 +3,27 @@
 namespace MWManager\Controller;
 
 use MWManager\Helpers\View;
-use MWManager\Model\Item;
+use MWManager\Model\Items;
 use MWManager\Model\User;
 
-class Movies implements InterfaceRequisition
+class Item implements InterfaceRequisition
 {
     use View;
     private $omdb;
     private $user;
-    private $movies;
+    private $items;
 
     public function __construct()
     {
       $this->user = new User;
-      $this->movies = new Item('movies');
+      $this->items = new Items;
       $apiKey = $this->user->getAPI('omdb');
     }
 
     public function process()
     {
       $title = 'Movies';
-      $listMovies = $this->movies->getCategoryItems('movies');
-      $this->render('/menu/movies.php', compact('title', 'listMovies'));
+      $listItems = $this->items->getCategoryItems();
+      $this->render('/menu/items.php', compact('title', 'listItems'));
     }
 }

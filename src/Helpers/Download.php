@@ -5,7 +5,7 @@ namespace MWManager\Helpers;
 use MWManager\APIS\OMDB;
 use MWManager\Controller\InterfaceRequisition;
 use MWManager\Model\User;
-use MWManager\Model\Item;
+use MWManager\Model\Items;
 
 class Download implements InterfaceRequisition
 {
@@ -16,7 +16,7 @@ class Download implements InterfaceRequisition
   public function __construct()
   {
     $this->user = new User();
-    $this->category = new Item($_POST['target']);
+    $this->category = new Items($_POST['target']);
     $this->itemId = $_POST['itemId'];
   }
 
@@ -24,11 +24,12 @@ class Download implements InterfaceRequisition
   {
     switch($_POST['target']){
       case 'movies':
+      case 'series':
         $api = new OMDB($this->user->getAPI('omdb'));
         $itemName = reset($this->category->getItem($this->itemId))->name;
         $getData = $api->getInfo($itemName);
         $image = $getData['Poster'];
-        //file_put_contents('/tmp/teste.txt', print_r($getData, true)); // API Data received
+        //file_put_contents('c:\Temp\test.txt', print_r($getData, true)); // API Data received
         $this->grabImage($image, __DIR__."/../../public/img/items/movies/$this->itemId.jpg");
         break;
     }

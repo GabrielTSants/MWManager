@@ -12,7 +12,7 @@ trait Validate
     return true;
   }
 
-  public function checkString(array $data, string $value): bool
+  public function checkString(array $data, string $value)
   {
     foreach ($data as $string){
       if (!str_contains($value, $string)){

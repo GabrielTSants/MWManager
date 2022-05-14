@@ -1,4 +1,9 @@
 <?php
+
+if (!array_key_exists('PATH_INFO', $_SERVER)){
+  header ('Location: /login');
+  return;
+};
 if (file_exists($_SERVER['PATH_INFO'])) return false;
 require __DIR__ . '/../autoload.php';
 require __DIR__ . '/../src/Controller/InterfaceRequisition.php';
@@ -16,7 +21,7 @@ session_start();
 if (!isset($_SESSION['username']) && $_SERVER['PATH_INFO'] !== '/login'){
   header ('Location: /login');
 } else if (isset($_SESSION['username']) && $_SERVER['PATH_INFO'] == '/login'){
-  header ('Location: /');
+  header ('Location: /menu');
 }
 
 $path = $routes[$_SERVER['PATH_INFO']];

@@ -14,12 +14,14 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto"></ul><!-- Future buttons -->
-    <form class="form-inline my-2 my-lg-0">
-      <a href="/settings" class="mr-2"><?=$_SESSION['username']?></a>
-      <a class="btn btn-secondary btn-sm" href="/logout">Logout</a>
-    </form>
-  </div>
+  <?php if (isset($_SESSION['username'])): ?>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto"></ul><!-- Future buttons -->
+      <form class="form-inline my-2 my-lg-0">
+        <a href="/settings" class="mr-2"><?=$_SESSION['username']?></a>
+        <a class="btn btn-secondary btn-sm" href="/logout">Logout</a>
+      </form>
+    </div>
+  <?php endif; ?>
 </nav>
 <body>

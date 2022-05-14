@@ -8,26 +8,26 @@
 
 <div class="container"> 
     <div class="row">
-      <?php foreach($listMovies as $movie): ?>
+      <?php foreach($listItems as $item): ?>
         <div class="card hvr-reveal col-md-4 col-sm-5 col-lg-3 mb-2 ml-2">
           <div class="view overlay">
-          <?php if (empty($movie->name)): ?>
+          <?php if (empty($item->name)): ?>
               <svg class="bd-placeholder-img card-img-top" width="100%" height="40%"><rect  fill="#79999c"></rect></svg>
             <?php else: ?>
-              <img class="card-img-top mt-2" src="<?="/img/items/movies/$movie->id.jpg" ?>"  alt="Card image cap"/>
+              <img class="card-img-top mt-2" src="<?="/img/items/movies/$item->id.jpg" ?>"  alt="Card image cap"/>
             <?php endif;?>
             <a>
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
           <div class="card-body">
-            <h5 class="card-title block" id="<?=$movie->name?>"><?=$movie->name?><a onclick="downloadInfo('<?=$movie->id?>')" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
+            <h5 class="card-title block" id="<?=$item->name?>"><?=$item->name?><a onclick="downloadInfo('<?=$item->id?>')" class="ic-download-info">&nbsp;<img height="20px" width="20px" src="/img/icon/Info.svg"></a></h5>
             <hr>
-            <p class="card-text"><?= !empty($movie->description) ? $movie->description : 'No description' ?></p>
-            <p class="card-text">Started at: <?= explode(' ', $movie->created_at)[0] ?></p>
+            <p class="card-text"><?= !empty($item->description) ? $item->description : 'No description' ?></p>
+            <p class="card-text">Started at: <?= explode(' ', $item->created_at)[0] ?></p>
           </div>
           <div class="row justify-content-end ">
-              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="#"><?= $movie->completed == 0 ? 'Watched' : 'To watch' ?></a>
+              <a class="btn btn-indigo btn-rounded btn-md btn-outline-secondary col m-2" href="#"><?= $item->completed == 0 ? 'Finished' : 'To finish' ?></a>
           </div>
         </div>
       <?php endforeach ?>        

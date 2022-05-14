@@ -12,7 +12,7 @@ final class User extends Model
   public function __construct()
   {
     parent::__construct();
-    $this->userId = $_SESSION['userId'];
+    if (isset($_SESSION['userId'])) $this->userId = $_SESSION['userId'];
   }
 
   public function getUserByName($user)

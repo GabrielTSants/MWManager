@@ -49,6 +49,30 @@ class Model
       return false;
   }
 
+  public function delete($options = [])
+  {
+      if (is_array($options)){
+        foreach ($options as $key => $value){
+          $whereConditions[] = ' '.$this->checkownTable($key).' = '.(!$this->checkString(['id', 'fk'], $key) ? "\"$value\"" : "\"$value\"" ).''; // Ternary else for fk/id with strings too (SQlite Fault!)
+        }
+        $whereClause = "WHERE ".implode(' AND ', $whereConditions);
+      } else if (is_string($options)){
+        $whereClause = 'WHERE '.$options;
+      } else {
+        throw new \Exception('Wrong parameter');
+      }
+
+      $sql = "DELETE FROM $this->table ".$whereClause.";";
+
+      $update =  $this->connection->execute($sql);
+
+      if ($update) {
+          return true;
+      }
+
+      return false;
+  }
+
   public function update($data, $options = [])
   {
       $data = array_filter($data, fn($value) => !is_null($value));
@@ -60,9 +84,9 @@ class Model
       $this->connection->query("UPDATE $this->table ($fields) VALUES ($valuesSth);");
       $data = array_filter($data, fn($value) => !is_null($value));
 
-      $save =  $this->connection->execute(array_values($data));
+      $update =  $this->connection->execute(array_values($data));
 
-      if ($save) {
+      if ($update) {
           return  $this->connection->con->lastInsertId();
       }
 
@@ -107,6 +131,7 @@ class Model
     }
 
     $sql = "SELECT $columnClause FROM $this->table".(!empty($joinClause) ? $joinClause : ' ')." $whereClause".((!empty($conditionClause) ? $conditionClause : '')).";";
+
     return $sql;
   }
 

@@ -4,7 +4,7 @@ namespace MWManager\Controller;
 
 use MWManager\Helpers\View;
 use MWManager\Model\Category;
-use MWManager\Model\Item;
+use MWManager\Model\Items;
 
 class NewItem implements InterfaceRequisition
 {
@@ -18,9 +18,11 @@ class NewItem implements InterfaceRequisition
 
   public function process()
   {
-    if (isset($_POST['save']) && !empty($_POST['name']) && !empty($_POST['categoryList']) && !empty($_POST['genreList'])){ 
-      $item = new Item($_POST['categoryList']);
-      $item->save(['name' => $_POST['name'], 'fk_genre' => $_POST['genreList'], 'fk_user' => $_POST['userId']]);
+    if (isset($_POST['save']) && !empty($_POST['name']) && !empty($_POST['categoryList']) && !empty($_POST['genreList'])){
+      $item = new Items();
+      $item_type = strtolower($_POST['categoryList']);
+      $itemName = rtrim($_POST['name']);
+      $item->save(['name' => $itemName, 'fk_genre' => $_POST['genreList'], 'item_type' => $item_type, 'fk_user' => $_SESSION['userId']]);
       header('Location: /'.strtolower($_POST['categoryList']));
       return;
     }
