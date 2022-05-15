@@ -25,7 +25,7 @@ class Category extends Model
 
   public function getUserCategory()
   {
-    $sql = $this->search(['id', 'name'], "category.id IN (SELECT uc.fk_category FROM user_category uc WHERE uc.fk_user = $this->userId)", ['ORDER' => 'name ASC']);
+    $sql = $this->search(['id', 'name', 'uc.public'], ["uc.fk_user" => $this->userId], ['user_category JOIN' => 'JOIN user_category uc ON uc.fk_category  = category.id', 'ORDER' => 'name ASC']);
     
     $this->connection->query($sql);
     return $this->connection->execute()->fetchAll(\PDO::FETCH_OBJ);
