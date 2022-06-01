@@ -1,6 +1,6 @@
 <?php
 
-use MWManager\Controller\{Login, Logout, Menu, Item, NewCategory, NewGenre, NewItem, Settings};
+use MWManager\Controller\{Login, Logout, Menu, Item, NewCategory, NewGenre, NewItem, Settings, CompleteItem};
 use MWManager\Helpers\{Download, Dropdown};
 
 return [
@@ -15,5 +15,6 @@ return [
         '/new-genre'    => NewGenre::class,
         '/new-category' => NewCategory::class,
         '/getGenres'    => Dropdown::class,
+        '/completeItem' => CompleteItem::class,
         '/downloadInfo' => Download::class
 ];

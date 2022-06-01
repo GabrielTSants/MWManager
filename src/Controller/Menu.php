@@ -3,7 +3,7 @@
 namespace MWManager\Controller;
 
 use MWManager\Helpers\View;
-use MWManager\Model\Category;
+use MWManager\Model\{Category, Items};
 
 class Menu implements InterfaceRequisition
 {
@@ -12,7 +12,10 @@ class Menu implements InterfaceRequisition
   {
     $title = 'MWManager';
     $categories = new Category;
+    $items = new Items();
+
     $listCategories = $categories->getUserCategory();
-    $this->render('menu/index.php', compact('title', 'listCategories'));
+    $completedItems = $items->completedItems();
+    $this->render('menu/index.php', compact('title', 'listCategories', 'completedItems'));
   }
 }

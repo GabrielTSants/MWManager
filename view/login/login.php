@@ -1,4 +1,5 @@
 <?php require_once __DIR__.'/../header.php'; ?>
+
 <div class="container">
   <form action="login" method="POST">
     <div class="form-group">
@@ -10,5 +11,6 @@
     <button class="btn btn-primary">Login</button>
   </form>
 </div>
+
 <?php require_once __DIR__.'/../footer.php'; ?>
 

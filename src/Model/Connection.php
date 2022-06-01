@@ -25,8 +25,10 @@ class Connection
   {
     try {
       $this->stmt = $this->con->prepare($query);
+      //echo $query;
     } catch (PDOException $e){
       echo "SQL ERROR: " . $query;
+      file_put_contents('C:/Temp/sql.txt', $query);
     } 
   }
 

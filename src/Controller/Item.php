@@ -22,7 +22,7 @@ class Item implements InterfaceRequisition
 
     public function process()
     {
-      $title = 'Movies';
+      $title = ucfirst(substr($_SERVER['PATH_INFO'], 1));
       $listItems = $this->items->getCategoryItems();
       $this->render('/menu/items.php', compact('title', 'listItems'));
     }

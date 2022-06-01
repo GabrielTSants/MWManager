@@ -60,7 +60,7 @@ class Model
   {
       if (is_array($options)){
         foreach ($options as $key => $value){
-          $whereConditions[] = ' '.$this->checkownTable($key).' = '.(!$this->checkString(['id', 'fk'], $key) ? "\"$value\"" : "\"$value\"" ).''; // Ternary else for fk/id with strings too (SQlite Fault!)
+          $whereConditions[] = ' '.$this->checkownTable($key).' = '.(!$this->checkString(['id', 'fk'], $key) ? "\"$value\"" : "\"$value\"" ).''; // Ternary else for fk/id with strings too (SQlite problem)
         }
         $whereClause = "WHERE ".implode(' AND ', $whereConditions);
       } else if (is_string($options)){
@@ -80,24 +80,13 @@ class Model
       return false;
   }
 
-  public function update($data, $options = [])
+  public function update($data, $where)
   {
-      $data = array_filter($data, fn($value) => !is_null($value));
-
-      $fields = implode(',', array_keys($data));
-      $values = implode(',', array_values($data)); 
-      $valuesSth = implode(',', array_fill(0, count($data), '?'));
-
-      $this->connection->query("UPDATE $this->table ($fields) VALUES ($valuesSth);");
-      $data = array_filter($data, fn($value) => !is_null($value));
-
-      $update =  $this->connection->execute(array_values($data));
-
-      if ($update) {
-          return  $this->connection->con->lastInsertId();
-      }
-
-      return false;
+    $data  = urldecode(http_build_query($data, '', ', '));
+    $where = urldecode(http_build_query($where, '', ' AND '));
+    
+    $sql = $this->connection->query("UPDATE $this->table SET $data WHERE $where;");
+    $this->connection->execute($sql);
   }
 
   public function search($columns, $options = [], $conditions = [])
